@@ -9,14 +9,15 @@ class Home extends Component {
   }
 
   goToDetails = (event, id) => {
-    this.props.dispatch({type: 'GET_DETAILS', payload: {id: id}})
+    this.props.dispatch({type: 'GET_DETAILS', payload: {id: id}});
+    this.props.dispatch({type: 'GET_GENRES', payload: {id: id}});
   }
 
   render() {
     return (
       <>
           <h1>Movies</h1>
-          {this.props.reduxState.map((movie, i) => {
+          {this.props.movies.map((movie, i) => {
             return (
               <div key={i}>
                 <h2>{movie.title}</h2>
@@ -34,7 +35,7 @@ class Home extends Component {
 }
 
 const putReduxStateOnProps = (reduxState)=>({
-  reduxState: reduxState.moviesReducer
+  movies: reduxState.moviesReducer
 });
   
 export default connect(putReduxStateOnProps)(Home);
