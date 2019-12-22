@@ -16,7 +16,8 @@ import {takeEvery, put} from 'redux-saga/effects';
 function* rootSaga() {
     yield takeEvery('GET_MOVIES', getMoviesSaga);
     yield takeEvery('GET_DETAILS', getDetailsSaga);
-    yield takeEvery('GET_GENRES', getGenresSaga)
+    yield takeEvery('GET_GENRES', getGenresSaga);
+    yield takeEvery('EDIT_MOVIE', editMovieSaga);
 }
 
 function* getMoviesSaga() {
@@ -48,6 +49,17 @@ function* getGenresSaga(action) {
         console.log('error in getDetailsSaga...... error:', error);
     }
 }
+
+function* editMovieSaga(action) {
+    try {
+        yield axios.put(`/edit/${action.payload.id}`, action.payload);
+        yield put ({type: 'SET_MOVIES'});
+    } catch (error) {
+        console.log('Error setting tag for characters', error);
+        alert('Could not get data at this time. Try again later');
+    }
+ }
+ 
 
 // Create sagaMiddleware
 const sagaMiddleware = createSagaMiddleware();
