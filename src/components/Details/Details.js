@@ -15,7 +15,7 @@ class Details extends Component {
     return (
         <>
           <button onClick={this.backToHome}>Back to Home</button>
-          <button onClick={(event) => this.editDetails(event, this.props.details[0].id)}>Edit</button>
+          <button onClick={(event) => this.editDetails(event, this.props.details[0])}>Edit</button>
           {JSON.stringify(this.props.details[0])}
           {this.props.details.map((movie, i) => {
             return (
