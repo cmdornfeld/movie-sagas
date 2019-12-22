@@ -52,11 +52,10 @@ function* getGenresSaga(action) {
 
 function* editMovieSaga(action) {
     try {
-        yield axios.put(`/edit/${action.payload.id}`, action.payload);
-        yield put ({type: 'SET_MOVIES'});
+        const getResponse = yield axios.put(`/movies/${action.payload.id}`, action.payload);
+        yield put ({type: 'SET_MOVIES', payload: getResponse.data});
     } catch (error) {
-        console.log('Error setting tag for characters', error);
-        alert('Could not get data at this time. Try again later');
+        console.log('Error editing details of movie', error);
     }
  }
  
