@@ -7,11 +7,16 @@ class Details extends Component {
     this.props.history.push('/');
   }
 
+  editDetails = (event, id) => {
+    this.props.history.push('/edit')
+  }
+
   render() {
     return (
         <>
           <button onClick={this.backToHome}>Back to Home</button>
-          <button>Edit</button>
+          <button onClick={(event) => this.editDetails(event, this.props.details[0].id)}>Edit</button>
+          {JSON.stringify(this.props.details[0])}
           {this.props.details.map((movie, i) => {
             return (
               <div key={i}>
