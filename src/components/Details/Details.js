@@ -3,9 +3,15 @@ import {connect} from 'react-redux';
 
 class Details extends Component {
 
+  backToHome = () => {
+    this.props.history.push('/');
+  }
+
   render() {
     return (
         <>
+          <button onClick={this.backToHome}>Back to Home</button>
+          <button>Edit</button>
           {this.props.details.map((movie, i) => {
             return (
               <div key={i}>
