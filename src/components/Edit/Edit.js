@@ -23,7 +23,8 @@ class Edit extends Component {
 
     editMovieInfo = (event, id) => {
         console.log(this.state);
-        this.props.dispatch({type: 'EDIT_MOVIE', payload: this.state})
+        this.props.dispatch({type: 'EDIT_MOVIE', payload: this.state});
+        this.props.dispatch({type: 'GET_DETAILS', payload: {id: this.state.id}});
         this.props.history.push('/details');
     }
 
@@ -32,7 +33,7 @@ class Edit extends Component {
             <>
                 <p>Edit page</p>
                 <input onChange={(event) => this.handleChange(event, 'title')} type="text" placeholder="title" />
-                <input onChange={(event) => this.handleChange(event, 'description')} type="text" placeholder="description" />
+                <textarea onChange={(event) => this.handleChange(event, 'description')} type="text" placeholder="description" />
                 <button onClick={this.backToDetails}>Cancel</button>
                 <button onClick={this.editMovieInfo}>Save</button>
                 {JSON.stringify(this.props.details[0].id)}
