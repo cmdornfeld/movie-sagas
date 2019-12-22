@@ -16,7 +16,6 @@ class Home extends Component {
   render() {
     return (
       <>
-          <h1>Movies</h1>
           {this.props.movies.map((movie, i) => {
             return (
               <div key={i}>
