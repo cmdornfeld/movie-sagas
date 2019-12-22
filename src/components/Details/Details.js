@@ -3,12 +3,10 @@ import {connect} from 'react-redux';
 
 class Details extends Component {
 
-
-
   render() {
     return (
         <>
-          {this.props.reduxState.detailsReducer.map((movie, i) => {
+          {this.props.details.map((movie, i) => {
             return (
               <div key={i}>
                 <h3>{movie.title}</h3>
@@ -16,13 +14,20 @@ class Details extends Component {
               </div>
             )
           })}
+            <h3>Genres:</h3>
+            <ul>
+              {this.props.genres.map((genre,i) => {
+                return <li key={i}>{genre.name}</li>
+              })}
+            </ul>
         </>
     );
   }
 }
 
 const putReduxStateOnProps = (reduxState)=>({
-    reduxState
+    details: reduxState.detailsReducer,
+    genres: reduxState.genresReducer
 });
   
 export default connect(putReduxStateOnProps)(Details);
