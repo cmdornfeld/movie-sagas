@@ -52,8 +52,7 @@ function* getGenresSaga(action) {
 
 function* editMovieSaga(action) {
     try {
-        const getResponse = yield axios.put(`/movies/${action.payload.id}`, action.payload);
-        yield put ({type: 'SET_MOVIES', payload: getResponse.data});
+        yield axios.put(`/movies/${action.payload.id}`, action.payload);
     } catch (error) {
         console.log('Error editing details of movie', error);
     }
