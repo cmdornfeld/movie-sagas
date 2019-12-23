@@ -14,15 +14,18 @@ import {takeEvery, put} from 'redux-saga/effects';
 
 // Create the rootSaga generator function
 function* rootSaga() {
+    // inital dispatch will catch here and trigger getMoviesSaga
     yield takeEvery('GET_MOVIES', getMoviesSaga);
     yield takeEvery('GET_DETAILS', getDetailsSaga);
     yield takeEvery('GET_GENRES', getGenresSaga);
     yield takeEvery('EDIT_MOVIE', editMovieSaga);
 }
 
+// sends GET request to /movies
 function* getMoviesSaga() {
     try {
         const getResponse = yield axios.get('/movies');
+        // dispatches an action SET_MOVIES with our payload as the response from the DB query
         yield put({type: 'SET_MOVIES', payload: getResponse.data})
     }
     catch (error){
@@ -63,6 +66,7 @@ function* editMovieSaga(action) {
 const sagaMiddleware = createSagaMiddleware();
 
 // Used to store movies returned from the server
+// SET_MOVIES action from getMoviesSaga will catch here and set the state of this reducer to our payload (response from DB)
 const moviesReducer = (state = [], action) => {
     switch (action.type) {
         case 'SET_MOVIES':

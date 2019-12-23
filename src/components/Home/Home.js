@@ -4,6 +4,7 @@ import {Link} from 'react-router-dom';
 
 class Home extends Component {
 
+  // runs initial dispatch with action type that will be caught by rootSaga
   componentDidMount() {
     this.props.dispatch({type: 'GET_MOVIES'});
   }

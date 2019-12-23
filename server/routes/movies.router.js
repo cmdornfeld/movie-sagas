@@ -3,6 +3,8 @@ const pool = require('../modules/pool');
 
 const router = express.Router();
 
+// request received from getMoviesSaga
+// sends query to DB to GET all movies and returns the rows back to getMoviesSaga
 router.get('/', (req, res) => {
   const queryText = `SELECT * FROM movies ORDER BY "title" ASC`;
     pool.query(queryText)
