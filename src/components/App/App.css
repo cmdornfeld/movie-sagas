@@ -22,3 +22,26 @@
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
 }
+
+body {
+  background: rgb(5,104,121);
+  background: linear-gradient(90deg, rgba(5,104,121,1) 0%, rgba(19,211,238,0.6979166666666667) 50%, rgba(70,88,92,0.7035189075630253) 100%);
+
+}
+
+.header {
+  background-color: black;
+  color: white;
+  margin-bottom: 12px;
+  margin-top: 0;
+  padding: 28px;
+  font-size: 36px;
+}
+
+.card {
+  width: 75%;
+  margin: auto;
+  margin-bottom: 12px;
+}
+
+

@@ -1,5 +1,14 @@
 import React, { Component } from 'react';
 import {connect} from 'react-redux';
+import { withStyles } from '@material-ui/core/styles';
+import Button from '@material-ui/core/Button';
+
+// Styling for material-UI
+const styles = theme => ({
+  button: {
+    margin: theme.spacing.unit,
+  },
+});
 
 class Details extends Component {
 
@@ -18,9 +27,13 @@ class Details extends Component {
   render() {
     return (
         <>
-          <button onClick={this.backToHome}>Back to Home</button>
-          <button onClick={(event) => this.editDetails(event, this.props.details[0].id)}>Edit</button>
-          {JSON.stringify(this.props.details[0])}
+          <Button className={this.props.classes.button} onClick={this.backToHome} variant="contained" color="secondary">
+            Back to Home
+          </Button>
+          <Button className={this.props.classes.button} onClick={(event) => this.editDetails(event, this.props.details[0].id)}
+            variant="contained" color="primary">
+              Edit
+          </Button>
           {/* // map through our detailsReducer, creating a "movie" and "i" for the item in our detailsReducer array
               // assign a key to the div = to "i"
               // properties of the detailsReducer item can now be targeted by calling "movie"."propertyName" */}
@@ -56,4 +69,4 @@ const putReduxStateOnProps = (reduxState)=>({
 });
 
 // connecting our reduxState to Details component and exporting "Details" (imported on App.js)
-export default connect(putReduxStateOnProps)(Details);
+export default connect(putReduxStateOnProps)(withStyles(styles)(Details));
