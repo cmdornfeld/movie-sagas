@@ -1,5 +1,19 @@
 import React, { Component } from 'react';
 import {connect} from 'react-redux';
+import { withStyles } from '@material-ui/core/styles';
+import Button from '@material-ui/core/Button';
+import TextField from '@material-ui/core/TextField';
+
+// Styling for material-UI
+const styles = theme => ({
+    textField: {
+        marginLeft: theme.spacing.unit,
+        marginBottom: 12,
+    },
+    button: {
+        margin: theme.spacing.unit,
+    },
+});
 
 class Edit extends Component {
 
@@ -44,12 +58,19 @@ class Edit extends Component {
     render(){
         return (
             <>
-                <p>Edit page</p>
-                <input onChange={(event) => this.handleChange(event, 'title')} type="text" placeholder="title" />
-                <textarea onChange={(event) => this.handleChange(event, 'description')} type="text" placeholder="description" />
-                <button onClick={this.backToDetails}>Cancel</button>
-                <button onClick={this.editMovieInfo}>Save</button>
-                {JSON.stringify(this.props.details[0].id)}
+                <p>Edit details for {this.props.details[0].title}</p>
+                <TextField className={this.props.classes.textField} onChange={(event) => this.handleChange(event, 'title')} 
+                    type="text" label="movie title" variant="outlined" />
+                <br/>
+                <TextField className={this.props.classes.textField} onChange={(event) => this.handleChange(event, 'description')}
+                    type="text" label="movie description" variant="outlined" multiline={true} rows={4} />
+                <br/>
+                <Button className={this.props.classes.button} onClick={this.backToDetails} variant="contained" color="secondary">
+                    Cancel
+                </Button>
+                <Button className={this.props.classes.button} onClick={this.editMovieInfo} variant="contained" color="primary">
+                    Save
+                </Button>
             </>
         )
     }
@@ -62,4 +83,4 @@ const putReduxStateOnProps = (reduxState)=>({
 });
 
 // connecting our reduxState to Edit component and exporting "Edit" (imported on App.js)
-export default connect(putReduxStateOnProps)(Edit)
+export default connect(putReduxStateOnProps)(withStyles(styles)(Edit));

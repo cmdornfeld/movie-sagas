@@ -1,6 +1,18 @@
 import React, { Component } from 'react';
 import {connect} from 'react-redux';
 import {Link} from 'react-router-dom';
+import { withStyles } from '@material-ui/core/styles';
+import Card from '@material-ui/core/Card';
+import CardContent from '@material-ui/core/CardContent';
+import Typography from '@material-ui/core/Typography';
+
+
+// Styling for material-UI
+const styles = theme => ({
+  card: {
+    fontSize: 16,
+  }
+});
 
 class Home extends Component {
 
@@ -24,16 +36,24 @@ class Home extends Component {
           // properties of each moviesReducer item can now be targeted by calling "movie"."propertyName" */}
           {this.props.movies.map((movie, i) => {
             return (
-              <div key={i}>
-                <h2>{movie.title}</h2>
-                <br/>
-                {/* // on the click of the "movie.poster"/img, "link" user to the details page
-                    // trigger goToDetails function with given parameters (event and the id of the movie clicked) */}
-                <Link to='/details'>
+              <div className="card">
+              <Card key={i} className={this.props.classes.card} >
+                <CardContent>
+                  <Typography className={this.props.classes.title} color="textSecondary" gutterBottom>
+                    <h2>{movie.title}</h2>
+                  </Typography>
+                  <br/>
+                  {/* // on the click of the "movie.poster"/img, "link" user to the details page
+                      // trigger goToDetails function with given parameters (event and the id of the movie clicked) */}
+                  <Link to='/details'>
                   <img onClick={(event) => this.goToDetails(event, movie.id)} src={movie.poster}
                     alt={movie.title} /> 
-                </Link>
-                <p>{movie.description}</p>
+                  </Link>
+                  <Typography component="p">
+                    {movie.description}
+                  </Typography>
+                </CardContent>
+              </Card>
               </div>
             )
           })}
@@ -49,4 +69,4 @@ const putReduxStateOnProps = (reduxState)=>({
 });
 
 // connecting our reduxState to Home component and exporting "Home" (imported on App.js)
-export default connect(putReduxStateOnProps)(Home);
+export default connect(putReduxStateOnProps)(withStyles(styles)(Home));
