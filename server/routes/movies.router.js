@@ -17,6 +17,9 @@ router.get('/', (req, res) => {
     });
 });
 
+// request received from getDetailsSaga
+// sends query to DB to GET the title, description and id of the movie clicked
+// returns the row back to the getDetailsSaga
 router.get('/:id', (req, res) => {
   const queryText = `SELECT "title", "description", "id" FROM movies WHERE id=$1;`;
   
@@ -30,6 +33,9 @@ router.get('/:id', (req, res) => {
     });
 });
 
+// request received from editMovieSaga
+// sends query to DB to UPDATE the title and description of the movie clicked
+// sends a status 200 if UPDATE was successful; sends 500 if not
 router.put('/:id', (req, res) => {
   let movieId = req.params.id;
   let title = req.body.title;
@@ -38,7 +44,7 @@ router.put('/:id', (req, res) => {
   
     pool.query(queryText, [title, description, movieId])
         .then( (result) => {
-            res.send(result.rows);
+            res.sendStatus(200);
         })
         .catch( (error) => {
           console.log(`Error on EDIT query ${error}`);
