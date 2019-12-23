@@ -25,9 +25,9 @@ For this weekend project (#6), we were given the task of creating an application
 
 1. Localhost will begin on our homepage, which will render all movies currently in the database
 2. Click on a movie poster of your choosing, which will move you to the details page
-3. On the details page, click the back button to return to the homepage, or click the edit button to move to the edit page
-4. If edit was clicked, you now have the option to enter a new movie title, a new movie description, or both!  If no changes are being       made, click the back button to return to the details page
-5. If you wish to save the changes to the movie, click the save button, and you will be returned to the details, with your updated movie     details
+3. On the details page, click the `Back to List` button to return to the homepage, or click the `Edit` button to move to the edit page
+4. If `Edit` was clicked, you now have the option to enter a new movie title, a new movie description, or both!  If no changes are           desired made, click the `Cancel` button to return to the details page
+5. If you wish to save the changes to the movie, click the `Save` button, and you will be returned to the details, with your updated         movie details
 
 ## Built With
 -   node.js
@@ -38,7 +38,6 @@ For this weekend project (#6), we were given the task of creating an application
 -   Redux
 -   Saga
 -   PG
-
 
 ## Acknowledgement
 Huge thanks to Prime Digital Academy(Minneapolis), my instructor, Mary, and my cohort, Trifid!
