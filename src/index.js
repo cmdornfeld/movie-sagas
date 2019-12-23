@@ -14,15 +14,22 @@ import {takeEvery, put} from 'redux-saga/effects';
 
 // Create the rootSaga generator function
 function* rootSaga() {
+    // inital dispatch will catch here and trigger getMoviesSaga
     yield takeEvery('GET_MOVIES', getMoviesSaga);
+    // dispatch from goToDetails will catch here and trigger getDetailsSaga
+    // dispatch from editMovieInfo will catch here and trigger getDetailsSaga
     yield takeEvery('GET_DETAILS', getDetailsSaga);
+    // dispatch from goToDetails will catch here and trigger getGenresSaga
     yield takeEvery('GET_GENRES', getGenresSaga);
+    // dispatch from editMovieInfo will catch here and trigger editMovieSaga
     yield takeEvery('EDIT_MOVIE', editMovieSaga);
 }
 
+// sends GET request to /movies (movies.router.js)
 function* getMoviesSaga() {
     try {
         const getResponse = yield axios.get('/movies');
+        // dispatches an action SET_MOVIES with our payload as the response from the DB query
         yield put({type: 'SET_MOVIES', payload: getResponse.data})
     }
     catch (error){
@@ -30,9 +37,11 @@ function* getMoviesSaga() {
     }
 }
 
+// sends GET request to /movies/:id where id is = to the id of the movie clicked
 function* getDetailsSaga(action) {
     try {
         const getResponse = yield axios.get(`/movies/${action.payload.id}`);
+        // dispatches an action SET_DETAILS with our payload as the response from the DB query
         yield put({type: 'SET_DETAILS', payload: getResponse.data})
     }
     catch (error){
@@ -40,9 +49,11 @@ function* getDetailsSaga(action) {
     }
 }
 
+// sends GET request to /genres/:id where id is = to the id of the movie clicked
 function* getGenresSaga(action) {
     try {
         const getResponse = yield axios.get(`/genres/${action.payload.id}`);
+        // dispatches an action SET_GENRES with our payload as the response from the DB query
         yield put({type: 'SET_GENRES', payload: getResponse.data})
     }
     catch (error){
@@ -50,6 +61,8 @@ function* getGenresSaga(action) {
     }
 }
 
+// sends PUT request to /movies/:id where id is = to the id of the movie clicked
+// and payload is = to this.state from Edit.js
 function* editMovieSaga(action) {
     try {
         yield axios.put(`/movies/${action.payload.id}`, action.payload);
@@ -63,6 +76,7 @@ function* editMovieSaga(action) {
 const sagaMiddleware = createSagaMiddleware();
 
 // Used to store movies returned from the server
+// SET_MOVIES action from getMoviesSaga will catch here and set the state of this reducer to our payload (response from DB)
 const moviesReducer = (state = [], action) => {
     switch (action.type) {
         case 'SET_MOVIES':
@@ -72,6 +86,9 @@ const moviesReducer = (state = [], action) => {
     }
 }
 
+// Used to store detalis returned from the server
+// SET_DETAILS action from getMoviesSaga will catch here and set the state of this reducer to our payload (response from DB)
+// if edit was done, the detailsReducer state will now be set to the updated title and description
 const detailsReducer = (state = [], action) => {
     switch (action.type) {
         case 'SET_DETAILS':
@@ -81,7 +98,8 @@ const detailsReducer = (state = [], action) => {
     }
 }
 
-// Used to store the movie genres
+// Used to store the genres returned from the server
+// SET_GENRES action from getMoviesSaga will catch here and set the state of this reducer to our payload (response from DB)
 const genresReducer = (state = [], action) => {
     switch (action.type) {
         case 'SET_GENRES':

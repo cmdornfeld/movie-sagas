@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './App.css';
 import {BrowserRouter as Router, Route} from 'react-router-dom';
 
+// importing components from their respective files
 import Home from '../Home/Home';
 import Details from '../Details/Details';
 import Edit from '../Edit/Edit';
