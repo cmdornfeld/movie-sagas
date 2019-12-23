@@ -22,7 +22,8 @@ class Home extends Component {
                 <h2>{movie.title}</h2>
                 <br/>
                 <Link to='/details'>
-                  <img onClick={(event) => this.goToDetails(event, movie.id)} src={movie.poster} /> 
+                  <img onClick={(event) => this.goToDetails(event, movie.id)} src={movie.poster}
+                    alt={movie.title} /> 
                 </Link>
                 <p>{movie.description}</p>
               </div>
