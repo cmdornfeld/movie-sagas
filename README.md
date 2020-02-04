@@ -3,15 +3,21 @@
 ## Description
 For this weekend project (#6), we were given the task of creating an application that allows the user to view all of the movies stored in our database.  The user can select a movie (click on the movie poster) for more details, including the genre(s) that it falls under, as well as edit the title and/or description of a selected movie.  If the user does edit a movie title or description, the information is saved to our database.
 
+## Screen Shots
+
+#### Home page view
+
+![Add Entry Page](movie_saga_screenshot.png)
+
+#### Manage Genres View
+
+![Add Entry Page](movie_saga_screenshot2.png)
+
 ## Prerequisites
 
 -   node.js
--   express.js
 -   PG
--   database (Postico or equivalent)
--   React
--   Redux
--   Saga
+-   PostgreSQL
 
 
 ## Installation
