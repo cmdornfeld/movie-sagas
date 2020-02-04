@@ -5,11 +5,11 @@ For this weekend project (#6), we were given the task of creating an application
 
 ## Screen Shots
 
-#### Home page view
+#### Home page View
 
 ![Add Entry Page](movie_saga_screenshot.png)
 
-#### Manage Genres View
+#### Edit Details View
 
 ![Add Entry Page](movie_saga_screenshot2.png)
 
